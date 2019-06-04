@@ -1,0 +1,115 @@
+import random
+print("---- Você começa sua aventura ----")
+print("      Escolha seu personagem       ")
+print("Você pode escolher entre :  ")
+print("1 - O GUERREIRO que empunha espada e escudo, um personagem bastante equilibrado")
+print("2 - O MAGO que empunha seu cajado, dando grande quantidade de dano")
+print("3 - O TANQUE que empunha um grande escudo, dando grande capacidade de defesa")
+charclass=input("> ")
+if charclass == "1":
+    print("Ótimo! Você escolheu o guerreiro!")
+    print("Você começa com uma quantidade igual de defesa e ataque")
+    ataque=10
+    defesa=10
+elif charclass == "2":
+    print("Ótimo! Você escolheu o mago!")
+    print("Você começa com uma grande quantidade de ataque, mas pouca defesa")
+    ataque=15
+    defesa=5
+elif charclass == "3":
+    print("Ótimo! Você escolheu o tanque!")
+    print("Você começa com uma grande quantidade de defesa, mas pouco ataque")
+    ataque=5
+    defesa=15
+xp=0
+monsterhp=1
+playermaxhp=25
+playerhp=25
+playerlevel=1
+playerwantstocontinue=1
+print("Agora é hora de começar sua aventura de verdade!")
+while playerwantstocontinue==1:
+    if playerlevel == 1:
+            monsterhp=(random.randint(10,30))
+            monsterattack=(random.randint(1,10))
+            monsterdefense=(random.randint(1,10))
+    elif playerlevel == 2:
+            monsterhp=(random.randint(20,40))
+            monsterattack=(random.randint(5,15))
+            monsterdefense=(random.randint(5,15))
+    elif playerlevel == 3:
+            monsterhp=(random.randint(30,50))
+            monsterattack=(random.randint(10,20))
+            monsterdefense=(random.randint(10,20))
+    elif playerlevel == 4:
+            monsterhp=(random.randint(40, 60))
+            monsterattack=(random.randint(15, 25))
+            monsterdefense=(random.randint(15, 25))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))
+    elif playerlevel == 5:
+            monsterhp=(random.randint(50,70))
+            monsterattack=(random.randint(20,30))
+            monsterdefence=(random.randint(25,35))                                                            
+    if monsterhp <15:
+        species=["slime","rato"]
+    elif 15 <= monsterhp <25:
+        species=["goblin","mão rastejante","morcego"]
+    elif 25<= monsterhp <45:
+        species=["esqueleto","fantasma fracote","mago wannabe","morcego gigante","homem lama"]
+    elif 45 <= monsterhp < 55:
+        species=["gato marinho","pato-coelho","beholder cego","lich apodrecido"]
+    elif 55 <= monsterhp <65:
+        species=[]
+    print("Você encontra um %s!"%(random.choice(species)))
+    while monsterhp > 0:
+                        print("Hp do monstro: %d   Seu hp: %d / %d  Seu nivel: %d   "%(monsterhp, playerhp, playermaxhp, playerlevel))
+                        print("Seu ataque: %d   Sua defesa: %d"%(ataque, defesa))
+                        print("Você ataca ou defende?")
+                        print("1 - Atacar  2 - Defender")
+                        decisao=int(input("> "))
+                        if decisao==1:
+                                        mdecision=random.randint(1,100)
+                                        if mdecision > 70:
+                                            playerhp-=monsterattack/2
+                                            monsterhp-=ataque-monsterdefense*1.5
+                        elif decisao==2:
+                                        playerdamage=ataque/2-monsterdefense
+                                        if playerdamage > 0:
+                                                            monsterhp -= playerdamage
+                                        monsterdamage=monsterattack-defesa*2
+                                        if monsterdamage > 0:
+                                                            playerhp -= monsterdamage
+    if (playerhp+ataque+defesa)/3 > (monsterattack+monsterdefense)/2:
+        xp += 1
+        if xp == 5:
+                playerlevel += 1
+                playermaxhp += 10
+                ataque += 5
+                defesa += 5
+                playerhp=playermaxhp
+    playerhp+=playermaxhp/2
+    print("Se você quiser continuar digite 1")
+    playerwantstocontinue=int(input("> "))
+    if playerhp <= 0:
+            print("You died")
+            playerwantstocontinue=0
+input("-Pressione qualquer tecla para sair-")
