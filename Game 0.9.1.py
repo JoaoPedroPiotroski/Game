@@ -327,7 +327,11 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
+
     player_name = input("> ")
+    while len(player_name) < 3:
+        print("Your player name must contain at least 3 characters")
+        player_name = input("> ")
     myPlayer.name = player_name
 
     #Class Selection#
