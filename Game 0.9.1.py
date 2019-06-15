@@ -272,10 +272,14 @@ def print_location():
     print('\n' '\n')
 
 def prompt():
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
     print("\n" + "=====================================")
     print("What would you like to do?")
+    print("| ", end="")
+    for action in acceptable_actions:
+        print(action+" | ", end="")
+    print("")
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
     while action.lower() not in acceptable_actions:
         print("Unknown action, try again.\n")
         action = input("> ")
@@ -287,8 +291,19 @@ def prompt():
         player_examine(action.lower())
 
 def player_move(myAction):
-    ask = "Where would you like to move to?\n"
-    dest = input(ask)
+    acceptable_movements = ['up', 'down', 'right', 'left', 'east', 'west', 'north', 'south']
+    print("\n" + "=====================================")
+    print("Where would you like to move to?")
+    print("| ", end="")
+    for movement in acceptable_movements:
+        print(movement+" | ", end="")
+    print("")
+    dest = input("> ")
+    while dest.lower() not in acceptable_movements:
+        print("Unknown movement, try again.\n")
+        dest = input("> ")
+
+    dest = dest.lower()
     if dest in ['up', 'north']:
         destination = zonemap[myPlayer.location][UP]
         movement_handler(destination)
