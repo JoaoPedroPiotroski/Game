@@ -346,16 +346,16 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_job = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest']
-    if player_job.lower() in valid_jobs:
-        myPlayer.job = player_job
-        print("You are now a " + player_job + "!\n")
-    while player_job.lower() not in valid_jobs:
+    player_job = ""
+    while True:
         player_job = input ("> ")
-        if player_job.lower() in valid_jobs:
-            myPlayer.job = player_job
-        print("You are now a " + player_job + "!\n")
+        if player_job.lower() not in valid_jobs:
+            print("You must choose a valid role!\n")
+        else:
+            break
+
+    print("You are now a " + player_job + "!\n")
     myPlayer.job = player_job
     
     #Class stats#
