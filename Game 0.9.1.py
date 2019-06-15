@@ -272,10 +272,14 @@ def print_location():
     print('\n' '\n')
 
 def prompt():
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
     print("\n" + "=====================================")
     print("What would you like to do?")
+    print("| ", end="")
+    for action in acceptable_actions:
+        print(action+" | ", end="")
+    print("")
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
     while action.lower() not in acceptable_actions:
         print("Unknown action, try again.\n")
         action = input("> ")
@@ -287,8 +291,19 @@ def prompt():
         player_examine(action.lower())
 
 def player_move(myAction):
-    ask = "Where would you like to move to?\n"
-    dest = input(ask)
+    acceptable_movements = ['up', 'down', 'right', 'left', 'east', 'west', 'north', 'south']
+    print("\n" + "=====================================")
+    print("Where would you like to move to?")
+    print("| ", end="")
+    for movement in acceptable_movements:
+        print(movement+" | ", end="")
+    print("")
+    dest = input("> ")
+    while dest.lower() not in acceptable_movements:
+        print("Unknown movement, try again.\n")
+        dest = input("> ")
+
+    dest = dest.lower()
     if dest in ['up', 'north']:
         destination = zonemap[myPlayer.location][UP]
         movement_handler(destination)
@@ -327,7 +342,11 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
+
     player_name = input("> ")
+    while len(player_name) < 3:
+        print("Your player name must contain at least 3 characters")
+        player_name = input("> ")
     myPlayer.name = player_name
 
     #Class Selection#
@@ -342,16 +361,16 @@ def setup_game():
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    player_job = input("> ")
     valid_jobs = ['warrior', 'mage', 'priest']
-    if player_job.lower() in valid_jobs:
-        myPlayer.job = player_job
-        print("You are now a " + player_job + "!\n")
-    while player_job.lower() not in valid_jobs:
+    player_job = ""
+    while True:
         player_job = input ("> ")
-        if player_job.lower() in valid_jobs:
-            myPlayer.job = player_job
-        print("You are now a " + player_job + "!\n")
+        if player_job.lower() not in valid_jobs:
+            print("You must choose a valid role!\n")
+        else:
+            break
+
+    print("You are now a " + player_job + "!\n")
     myPlayer.job = player_job
     
     #Class stats#
