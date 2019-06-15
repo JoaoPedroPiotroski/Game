@@ -41,7 +41,7 @@ def title_screen_selections():
         elif option.lower() == ('quit'):
             sys.exit()   
 def title_screen():
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("############################################")
     print("#      Welcome to the python text RPG      #")
     print("#                 Play                     #")
@@ -318,7 +318,7 @@ def main_game_loop():
         prompt()
 
 def setup_game():
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     #Name Registration#
 
@@ -394,7 +394,7 @@ def setup_game():
             sys.stdout.write(character)
             sys.stdout.flush()
             time.sleep(0.2)
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("#####################")
     print("  Let's start now!   ")
     print("#####################")
